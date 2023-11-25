@@ -5,7 +5,8 @@ import Registrasi from './Pages/regist';
 import LoginComponent from './Pages/login';
 import Mentor from './Pages/DetailMentor';
 import Pembayaran from './Pages/DetailPembayaran';
-import Barcode from './Pages/Barcode'
+import PaymentBarcode from './Pages/Barcode'
+import PaymentSuccess from './Pages/Success';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         <Route path='/login' element={<LoginComponent/>} />
         <Route path='/mentor' element={<Mentor/>} />
         <Route path='/pembayaran' element={<Pembayaran/>}/>
-        <Route path='/barcode' element={<Barcode/>} />
+        <Route path='/barcode' element={<PaymentBarcode/>} />
+        <Route path='/success' element={<PaymentSuccess/>}/>
       </Routes>
     </Router>
   );

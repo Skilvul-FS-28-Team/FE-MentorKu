@@ -29,7 +29,7 @@ const Mentor = () => {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav mx-auto">
                 <li className="nav-item mx-2 mx-lg-5">
-                  <a className="nav-link active" aria-current="page" href="/home">
+                  <a className="nav-link active" aria-current="page" href="/">
                     Home
                   </a>
                 </li>

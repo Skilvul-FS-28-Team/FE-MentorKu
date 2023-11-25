@@ -1,13 +1,12 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'bootstrap-icons/font/bootstrap-icons.css';
-import '../style/Barcode.css';
+import '../style/Success.css';
 
-const PaymentBarcode = () => {
+const PaymentSuccess = () => {
   return (
     <div>
-      <header>
-      <nav className="navbar navbar-expand-lg ">
+        <header>
+        <nav className="navbar navbar-expand-lg ">
           <div className="container">
             <a className="navbar-brand" href="#">
               <img src="src/assets/img/Only-Logo.png" alt="" srcSet="" className="me-1" />
@@ -43,48 +42,35 @@ const PaymentBarcode = () => {
             </div>
           </div>
         </nav>
-      </header>
+        </header>
 
-      <main>
-      <div className="container">
-        <div className="row box-container">
-          <div className="box-payment ">
-            <div className="icon-payment">
-              <img className="my-2" src="src/Assets/Img/Only-Logo.png" alt="" />
-              <h5 className="text-logo">
-                Mentor<span className="">ku</span>
-              </h5>
-            </div>
-            <div className="card"></div>
-            <div className="title-price">
-              <p>Total</p>
-              <span>Lakukan Pembayaran</span>
-            </div>
-            <div className="text-price">
-              <h3>Rp100.000</h3>
-              <span>13:58:09</span>
-            </div>
-            <div className="category-payment">
-              <p>Gopay</p>
-              <img src="src/assets/img/payment/gopay-icon.png" alt="Gopay" />
-            </div>
-            <div className="card"></div>
-            <div className="barcode-payment">
-              <img src="src/assets/img/payment/barcode.jpg" alt="" />
-            </div>
-            <div className="button-container">
-              <div>
-                <button className="btn btn-primary" id="btn-payment-done">
-                  Pembayaran Selesai ?
-                </button>
+        <main>
+          <div className="container">
+            <div className="row box-container">
+              <div className="box-payment ">
+                <i className="bi bi-check-circle-fill"></i>
+                <h2>Pembayaran Berhasil</h2>
+                <p>
+                  Selamat pembayaran berhasil dilakukan. Silahkan lihat <br /> detail sesi mentoring Anda.
+                </p>
+                <div className="button-container">
+                  <div>
+                    <button className="btn btn-primary">Detail Transaksi</button>
+                  </div>
+                  <div>
+                    <a href="/">
+                    <button id="back-home" className="btn btn-border-primary">
+                      Kembali ke Home
+                    </button>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </main>
+        </main>
 
-      <footer className="text-black">
+        <footer className="text-black">
       <div className="container py-3">
         <div className="row">
           <div className="col-lg-5 col-md-12 mb-4 mb-md-0">
@@ -160,9 +146,8 @@ const PaymentBarcode = () => {
         </div>
       </div>
     </footer>
-
     </div>
   );
 };
 
-export default PaymentBarcode;
+export default PaymentSuccess;
