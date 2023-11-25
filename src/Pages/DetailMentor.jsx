@@ -287,6 +287,7 @@ const Mentor = () => {
                         <p className="range-total-harga">Rp80.000</p>
                       </div>
                       <div className="button-book">
+                        <a href="/pembayaran">
                         <button
                           id="btn-booking-mentor"
                           type="button"
@@ -294,6 +295,7 @@ const Mentor = () => {
                         >
                           Booking Mentor
                         </button>
+                        </a>
                       </div>
                     </div>
                   </div>

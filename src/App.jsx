@@ -5,16 +5,18 @@ import Registrasi from './Pages/regist';
 import LoginComponent from './Pages/login';
 import Mentor from './Pages/DetailMentor';
 import Pembayaran from './Pages/DetailPembayaran';
+import Barcode from './Pages/Barcode'
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/home' element={<Home/>} />
+        <Route path='/' element={<Home/>} />
         <Route path='/regist' element={<Registrasi/>} />
         <Route path='/login' element={<LoginComponent/>} />
         <Route path='/mentor' element={<Mentor/>} />
         <Route path='/pembayaran' element={<Pembayaran/>}/>
+        <Route path='/barcode' element={<Barcode/>} />
       </Routes>
     </Router>
   );

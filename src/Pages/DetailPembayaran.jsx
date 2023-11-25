@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/DetailPembayaran.css';
+import { FaStar } from 'react-icons/fa6';
 
 const Pembayaran = () => {
   return (
@@ -64,7 +65,7 @@ const Pembayaran = () => {
         <section className="breadcrumb-section">
           <div className="container">
             <div className="breadcrumb d-inline-flex gap-2 align-items-center">
-              <i className="bi bi-arrow-left-short">🔙</i>
+              <i className="bi bi-arrow-left-short"><a href="/mentor">🔙</a></i>
               <h2>Konfirmasikan dan Bayar</h2>
             </div>
           </div>
@@ -98,7 +99,7 @@ const Pembayaran = () => {
                         <h5 className="card-title">Mentoring 1 on 1 Oleh <br /></h5>
                         <hr />
                         <div className="card-booking-rating d-inline-flex gap-2 align-items-center">
-                          <i className="bi bi-star-fill"></i>4.9<b>(576)</b>
+                          <i className="bi bi-star-fill"><FaStar/></i>4.9<b>(576)</b>
                         </div>
                       </div>
                     </div>
