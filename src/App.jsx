@@ -7,6 +7,7 @@ import Mentor from './Pages/DetailMentor';
 import Pembayaran from './Pages/DetailPembayaran';
 import PaymentBarcode from './Pages/Barcode'
 import PaymentSuccess from './Pages/Success';
+import Dashboard from './Pages/Dashboard';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/pembayaran' element={<Pembayaran/>}/>
         <Route path='/barcode' element={<PaymentBarcode/>} />
         <Route path='/success' element={<PaymentSuccess/>}/>
+        <Route path='/dashboard' element={<Dashboard/>}/>
       </Routes>
     </Router>
   );

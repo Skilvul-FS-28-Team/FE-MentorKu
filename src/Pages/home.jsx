@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import '../style/index.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { FaStar } from "react-icons/fa6";
+import '../components/home'
 
 
 const Home = () => {

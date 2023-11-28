@@ -1,0 +1,273 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+:root {
+    --primary-color: #6C60E0;
+    --secondary-color: #FF764A;
+
+    --text-color-2: #414141;
+}
+
+/* navbar */
+
+nav ul li {
+    font-size: 16px;
+}
+
+.btn {
+    padding: 10px 30px;
+    border: none;
+}
+
+.btn-secondary{
+    background-color: var(--secondary-color);
+    border: none;
+}
+.btn-secondary:hover{
+    background-color: #ff9674;
+}
+
+.btn-primary{
+    background-color: var(--primary-color);
+    border: none;
+}
+.btn-primary:hover{
+    background-color: #9b91f4;
+    border: none;
+}
+
+.btn.btn-flat {
+    background-color: transparent;
+    color: var(--text-color-2)
+}
+
+.navbar-brand {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1C1A1B;
+}
+
+span.primary {
+    color: var(--primary-color);
+}
+
+span.secondary {
+    color: var(--secondary-color);
+    text-decoration: underline;
+    text-decoration-thickness: 7px;
+    text-underline-position: under;
+}
+
+.nav-item {
+    margin-right: 85px;
+}
+
+
+/* profile sec */
+.profile-sec{
+    /* background-color: #F9FAFF; */
+}
+.profile-sec img{
+    width: 70%;
+    border-radius: 100%;
+}
+
+.profile-sec h2 {
+    font-size: 24px;
+    margin-top: 15px;
+    font-weight: bold;
+    color: var(--text-color-2);
+}
+
+.profile-sec .button-link{
+    border-radius: 6px;
+    border: 0.5px solid; 
+    font-size: 12px;
+    background-color: white;
+    margin-top: 5px;
+}
+
+.side-bar a{
+    display: block;
+    color: var(--text-color-2);
+    margin-top: 25px;
+    text-align: center;
+    width: 70%;
+}
+
+.side-bar a .click{
+    border: 1px solid #6C60E0;
+    width: 100%;
+    color: var(--primary-color);
+    border-radius: 8px;
+}
+
+.side-bar a button{
+    border: 0px;
+    background-color: white;
+}
+
+.side-bar a button:hover{
+    background-color: white;
+    color: var(--primary-color);
+    width: 100%;
+}
+
+/* Card Dashboard */
+#card-dashboard{
+    background-color: var(--primary-color);
+}
+
+#card-dashboard #card-dashboard-1 h5{
+    color: white;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+#card-dashboard #card-dashboard-1 p{
+    color: white;
+    /* font-weight: bold; */
+    font-size: 18px;
+}
+
+#card-dashboard-2{
+    margin-top: -50px;
+}
+
+#card-dashboard-2 h2{
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-color-2);
+    margin-bottom: 10px;
+}
+
+#card-dashboard-2 p{
+    font-size: 50px;
+    color: #D69C07;
+    font-weight: bold;
+}
+
+#card-dashboard-2 p span{
+    font-size: 18px;
+    color: var(--text-color-2);
+}
+
+#card-point{
+    margin-bottom: 10px;
+}
+
+/* progress */
+#card-progress-section{
+    margin-bottom: 10px;
+}
+
+#card-progress-section h5{
+    font-weight: bold;
+    font-size:24px;
+    color: var(--text-color-2);
+    margin-top: 40px;
+}
+
+#card-progress{
+    display: flex;
+}
+
+#card-progress img{
+    width: 20%;
+}
+
+#card-progress h5{
+    margin-top: 0px;
+}
+
+.progress-container .progress-bar{
+    background-color: var(--primary-color);
+}
+
+
+
+
+
+/* Info sec */
+#info-section h2{
+    font-size: 18px;
+    color: var(--text-color-2);
+    font-weight: bold;
+}
+
+#card-info-section{
+    display: flex;
+}
+
+#card-info-section img{
+    width: 15%;
+    height: 15%;
+    border-radius: 100%;
+}
+
+#card-info-section .info-desc{
+    margin-left: 10px;
+}
+
+#card-info-section .info-desc h5{
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text-color-2);
+}
+
+#card-info-section .info-desc p{
+    font-size: 12px;
+}
+
+
+
+
+
+
+
+/* footer */
+footer {
+    border-top: 1px solid #EAEAEA;
+    margin-top: 100px;
+}
+
+h5.text-logo {
+    color: #1C1A1B;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.sosmed-footer {
+    display: flex;
+    gap: 43px;
+    padding-bottom: 40px;
+}
+
+.sosmed-logo:hover {
+    scale: 1.2;
+    animation: all 0.5s  ease-in-out;
+}
+
+footer h5 {
+    font-size: 18px;
+    color: #797979;
+    font-weight: 600;
+}
+
+footer ul {
+    margin-top: 38px;
+}
+
+footer li {
+    margin-bottom: 12px;
+}
+
+footer ul li a {
+    color: #797979;
+}
