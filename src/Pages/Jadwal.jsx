@@ -1,8 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../style/dashboard.css'
+import '../style/jadwal.css'
 
-const Dashboard = () => {
+const Jadwal = () => {
   return (
     <>
       <header>
@@ -66,10 +66,10 @@ const Dashboard = () => {
             </div>
             <div className="side-bar">
               <a href="/dashboard">
-                <button className="click">Dashboard</button>
+                <button>Dashboard</button>
               </a>
               <a href="/jadwal">
-                <button>Jadwal Saya</button>
+                <button className="click">Jadwal Saya</button>
               </a>
               <a href="/event">
                 <button>Event</button>
@@ -83,124 +83,101 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="col-md-10">
-            <div className="container">
-              <div className="row">
-                <div className="col-md-8">
-                  <div className="card" id="card-dashboard">
-                    <div className="card-body" id="card-dashboard-1">
-                      <h5 className="card-title">Halo, Lina Wiona!</h5>
-                      <p className="card-text">
-                        Mari memulai belajar lagi, selesaikan materi yang tersedia
-                      </p>
-                    </div>
-                    <div className="container">
-                      <div className="row">
-                        <div className="col-md-12">
-                          <div className="card" id="card-point">
-                            <div className="card-body">
-                              <div className="container">
-                                <div className="row" id="card-dashboard-2">
-                                  <div className="col-md-6">
-                                    <h2>PointKu</h2>
-                                    <p>
-                                      70 <span>Point</span>
-                                    </p>
-                                  </div>
-                                  <div className="col-md-6">
-                                    <h2>VoucherKu</h2>
-                                    <p>
-                                      5 <span>Voucher</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+          <div className="col-md-10" id="card-time-section">
+      <div className="container mt-5">
+        <div className="row">
+          <h5>Jadwal Saya</h5>
 
-                  <div className="">
-                    <div className="row">
-                      <div className="col-md-12" id="card-progress-section">
-                        <h5>Lanjutkan Progressmu Terakhir</h5>
-                        <div className="card">
-                          <div className="card-body" id="card-progress">
-                            <img src="src/Assets/Img/card-detail.png" alt="" />
-                            <div className="card-progress-description">
-                              <h5 className="card-title">Design Thinking</h5>
-                              <p className="card-text">8/10 Submateri</p>
-                              <div className="progress-container">
-                                <div className="progress">
-                                  <div
-                                    className="progress-bar"
-                                    role="progressbar"
-                                    style={{ width: '80%' }}
-                                    aria-valuenow="25"
-                                    aria-valuemin="0"
-                                    aria-valuemax="100"
-                                  >
-                                    80%
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="">
-                    <div className="row">
-                      <div className="col-md-12" id="card-progress-section">
-                        <div className="card">
-                          <div className="card-body" id="card-progress">
-                            <img src="src/Assets/Img/card-detail.png" alt="" />
-                            <div className="card-progress-description">
-                              <h5 className="card-title">UI/UX</h5>
-                              <p className="card-text">5/10 Submateri</p>
-                              <div className="progress-container">
-                                <div className="progress">
-                                  <div
-                                    className="progress-bar"
-                                    role="progressbar"
-                                    style={{ width: '50%' }}
-                                    aria-valuenow="25"
-                                    aria-valuemin="0"
-                                    aria-valuemax="100"
-                                  >
-                                    50%
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-md-4" id="info-section">
-                  <h2>Informasi</h2>
-                  <div className="card">
-                    <div className="card-body" id="card-info-section">
-                      <img src="src/assets/img/mentor/Lina Wiona.png" alt="" />
-                      <div className="info-desc">
-                        <h5 className="card-title">Lengkapi profilmu sekarang</h5>
-                        <p className="card-text">
-                          Kamu masih kekurangan profil untuk dilengkapi, lengkapi
-                          sekarang juga!
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          {/* Card 1 */}
+          <button className="col-md-3">
+            <div>
+              <div className="card-body" id="card-time">
+                <h5 className="card-title">Micho Suhada</h5>
+                <p className="card-text">FrontEnd</p>
+              </div>
+              <div className="card" id="card-line"></div>
+              <div className="card-body" id="card-time-text">
+                <p className="card-title" id="card-time-day">
+                  Selasa
+                </p>
+                <p className="card-text" id="card-time-date">
+                  07 Sept
+                </p>
+                <p className="card-text" id="card-time-hour">
+                  10:00 - 12:00
+                </p>
               </div>
             </div>
-          </div>
+          </button>
+
+          {/* Card 2 */}
+          <button className="col-md-3">
+            <div>
+              <div className="card-body" id="card-time">
+                <h5 className="card-title">Micho Suhada</h5>
+                <p className="card-text">FrontEnd</p>
+              </div>
+              <div className="card" id="card-line"></div>
+              <div className="card-body" id="card-time-text">
+                <p className="card-title" id="card-time-day">
+                  Selasa
+                </p>
+                <p className="card-text" id="card-time-date">
+                  07 Sept
+                </p>
+                <p className="card-text" id="card-time-hour">
+                  10:00 - 12:00
+                </p>
+              </div>
+            </div>
+          </button>
+
+          {/* Card 3 */}
+          <button className="col-md-3">
+            <div>
+              <div className="card-body" id="card-time">
+                <h5 className="card-title">Micho Suhada</h5>
+                <p className="card-text">FrontEnd</p>
+              </div>
+              <div className="card" id="card-line"></div>
+              <div className="card-body" id="card-time-text">
+                <p className="card-title" id="card-time-day">
+                  Selasa
+                </p>
+                <p className="card-text" id="card-time-date">
+                  07 Sept
+                </p>
+                <p className="card-text" id="card-time-hour">
+                  10:00 - 12:00
+                </p>
+              </div>
+            </div>
+          </button>
+
+          {/* Card 4 */}
+          <button className="col-md-3">
+            <div>
+              <div className="card-body" id="card-time">
+                <h5 className="card-title">Micho Suhada</h5>
+                <p className="card-text">FrontEnd</p>
+              </div>
+              <div className="card" id="card-line"></div>
+              <div className="card-body" id="card-time-text">
+                <p className="card-title" id="card-time-day">
+                  Selasa
+                </p>
+                <p className="card-text" id="card-time-date">
+                  07 Sept
+                </p>
+                <p className="card-text" id="card-time-hour">
+                  10:00 - 12:00
+                </p>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
         </div>
       </div>
 
@@ -309,4 +286,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Jadwal;
