@@ -9,6 +9,7 @@ import PaymentBarcode from './Pages/Barcode'
 import PaymentSuccess from './Pages/Success';
 import Dashboard from './Pages/Dashboard';
 import Jadwal from './Pages/Jadwal';
+import Event from './Pages/Event';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/success' element={<PaymentSuccess/>}/>
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/jadwal' element={<Jadwal/>}/>
+        <Route path='/event' element={<Event/>}/>
       </Routes>
     </Router>
   );
