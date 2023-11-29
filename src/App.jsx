@@ -10,6 +10,7 @@ import PaymentSuccess from './Pages/Success';
 import Dashboard from './Pages/Dashboard';
 import Jadwal from './Pages/Jadwal';
 import Event from './Pages/Event';
+import Transaksi from './Pages/Transaksi';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/jadwal' element={<Jadwal/>}/>
         <Route path='/event' element={<Event/>}/>
+        <Route path='/transaksi' element={<Transaksi/>}/>
       </Routes>
     </Router>
   );
