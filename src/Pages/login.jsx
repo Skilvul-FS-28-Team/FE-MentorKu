@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../style/login.css';
 
 const LoginComponent = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+
+    localStorage.setItem("Email", email);
+    localStorage.setItem("Password", password);
+
+    fetch('https://652ff6b96c756603295e01fb.mockapi.io/regist')
+      .then(res => res.json())
+      .then(res => {
+        console.log(res)
+        const userExist = res.find(user => user.email === email && user.password === password)
+        console.log(userExist);
+        if (userExist === undefined) {
+          console.log("Email atau Password Salah")
+        }
+      })
+  };
+
   return (
     <div className="regist-page">
       <div className="row">
@@ -22,18 +43,18 @@ const LoginComponent = () => {
             <form action="#" method="post">
               <div className="form-group">
                 <label htmlFor="email">Email</label><br />
-                <input type="email" id="email" name="email" />
+                <input type="email" id="email" name="email" onChange={(e) => setEmail(e.target.value)} />
               </div>
               <br />
 
               <div className="form-group">
                 <label htmlFor="password">Kata Sandi</label><br />
-                <input type="password" id="password" name="password" />
+                <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)} />
               </div>
 
               <br />
               <div className="button-submit-daftar">
-                <input type="submit" value="Masuk" id="login" />
+                <input type="submit" value="Masuk" id="login" onClick={handleLogin} />
               </div>
               <div className="another-login">
                 <h3>Login Dengan</h3>

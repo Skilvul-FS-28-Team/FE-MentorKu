@@ -1,10 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import '../style/regist.css'
- 
+import '../style/regist.css';
 
 const Registrasi = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
+
+  const handleRegister = (event) => {
+    event.preventDefault();
+
+    fetch('https://652ff6b96c756603295e01fb.mockapi.io/regist', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        phone: phone
+      })
+    })
+      .then(res => res.json())
+      .then(res => alert("Register Berhasil"));
+  };
+
   return (
     <div className="regist-page">
       <div className="row">
@@ -23,27 +49,27 @@ const Registrasi = () => {
             <form action="#" method="post">
               <div className="form-group">
                 <label htmlFor="NamaDepan">Nama Depan<span>*</span></label><br />
-                <input type="text" id="NamaDepan" name="NamaDepan" required />
+                <input type="text" id="NamaDepan" name="NamaDepan" required onChange={(e) => setFirstName(e.target.value)} />
               </div>
               <div className="form-group">
                 <label htmlFor="NamaBelakang">Nama Belakang<span>*</span></label><br />
-                <input type="text" id="NamaBelakang" name="NamaBelakang" required />
+                <input type="text" id="NamaBelakang" name="NamaBelakang" required onChange={(e) => setLastName(e.target.value)} />
               </div>
               <div className="form-group">
                 <label htmlFor="email">Email<span>*</span></label><br />
-                <input type="email" id="email" name="email" required />
+                <input type="email" id="email" name="email" required onChange={(e) => setEmail(e.target.value)} />
               </div>
               <div className="form-group">
                 <label htmlFor="password">Kata Sandi<span>*</span></label><br />
-                <input type="password" id="password" name="password" required />
+                <input type="password" id="password" name="password" required onChange={(e) => setPassword(e.target.value)} />
               </div>
               <div className="form-group">
                 <label htmlFor="NoTelp">No Telp<span>*</span></label><br />
-                <input type="text" id="NoTelp" name="NoTelp" required />
+                <input type="text" id="NoTelp" name="NoTelp" required onChange={(e) => setPhone(e.target.value)} />
               </div>
 
               <div className="button-submit-daftar">
-                <input type="submit" value="Daftar" id="register-btn" />
+                <input type="submit" value="Daftar" id="register-btn" onClick={handleRegister} />
               </div>
               <div className="another-login">
                 <h3>Login Dengan</h3>
