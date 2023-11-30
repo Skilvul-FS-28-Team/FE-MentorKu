@@ -1,9 +1,26 @@
-import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/DetailPembayaran.css';
 import { FaStar } from 'react-icons/fa6';
+import { useEffect, useState } from "react"
 
 const Pembayaran = () => {
+  const [mentor1, setMentor1] = useState([]);
+
+   useEffect(() => {
+   getMentor();
+},[]);
+
+async function getMentor() {
+  try{
+    const response = await fetch("https://teal-colorful-lemur.cyclic.app/mentor");
+  const data = await response.json();
+  setMentor1(data.data);
+  } catch (error){
+    console.error("Gagal mendapatkan data mentor:", error)
+  }
+}
+
+const selectedMentor = mentor1.length > 0 ? mentor1[0] : null;
   return (
     <>
       <header>
@@ -74,12 +91,13 @@ const Pembayaran = () => {
         <section className="payment-information-section">
           <div className="container">
             <div className="row">
-              <div className="col-12 col-xl-7 col-md-12 col-sm-12">
+              {selectedMentor ? (
+                <div className="col-12 col-xl-7 col-md-12 col-sm-12">
                 <div className="mentoring-details">
                   <h5>Mentoring Anda</h5>
                   <hr />
                   <h6>Mentor</h6>
-                  <p id="namamentor"></p>
+                  <p id="namamentor">{selectedMentor.name}</p>
                   <h6>Hari/Tanggal</h6>
                   <p>Rabu, 02 November 2022</p>
                   <h6>Waktu</h6>
@@ -87,6 +105,9 @@ const Pembayaran = () => {
                 </div>
                 <br />
               </div>
+              ): (
+                <div>Loading...</div>
+              )}
 
               <div className="col-12 col-xl-5 col-md-12 col-sm-12 py-xl-0 py-md-3 py-sm-4 py-3">
                 <div className="card card-booking mb-3">
