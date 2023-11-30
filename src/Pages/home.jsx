@@ -6,6 +6,22 @@ import { useEffect, useState } from "react";
 
 const Home = () => {
   const [mentor1, setMentor1] = useState([]);
+  const [searchType, setSearchType] = useState('Mentor'); // Jenis pencarian awal
+  const [searchInput, setSearchInput] = useState('');
+
+  const handleSearchTypeChange = (type) => {
+    setSearchType(type);
+  };
+
+  const handleInputChange = (event) => {
+    setSearchInput(event.target.value);
+  };
+
+  const handleSearch = () => {
+    // Lakukan sesuatu dengan nilai searchType dan searchInput
+    console.log(`Search Type: ${searchType}, Search Input: ${searchInput}`);
+
+  };
 
   useEffect(() => {
     getMentor();
@@ -18,6 +34,8 @@ const Home = () => {
     const data = await response.json();
     setMentor1(data.data);
   }
+
+  
 
   // const { id1 } = useParams();
 
@@ -115,23 +133,25 @@ const Home = () => {
                     lakukan konsultasi dan diskusi efektif dengan 1 on 1
                   </p>
                   <div className="search-bar">
-                    <div id="select">
-                      <p id="select-text">Mentor</p>
-                      <i className="bi bi-caret-down-fill"></i>
-                      <ul id="list-search">
-                        <li className="options">Mentor</li>
-                        <li className="options">Materi</li>
-                      </ul>
-                    </div>
-                    <input
-                      type="text"
-                      id="search-input"
-                      placeholder="Search all in categories"
-                    />
-                    <button id="search-btn" className="search-button">
-                      <i className="bi bi-search">Q</i>
-                    </button>
-                  </div>
+      <div id="select">
+        <p id="select-text">{searchType}</p>
+        <i className="bi bi-caret-down-fill"></i>
+        <ul id="list-search">
+          <li className="options" onClick={() => handleSearchTypeChange('Mentor')}>Mentor</li>
+          <li className="options" onClick={() => handleSearchTypeChange('Materi')}>Materi</li>
+        </ul>
+      </div>
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search all in categories"
+        value={searchInput}
+        onChange={handleInputChange}
+      />
+      <button id="search-btn" className="search-button" onClick={handleSearch}>
+        <i className="bi bi-search">Q</i>
+      </button>
+    </div>
                   <div className="row">
                     <div className="statistic col-lg-2 col-md-2 col-sm-2 col-4">
                       <h3>20+</h3>
