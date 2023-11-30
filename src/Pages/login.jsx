@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../style/login.css';
 
 const LoginComponent = () => {
@@ -11,16 +11,27 @@ const LoginComponent = () => {
     localStorage.setItem("Email", email);
     localStorage.setItem("Password", password);
 
-    fetch('https://teal-colorful-lemur.cyclic.app/auth/login')
-      .then(res => res.json())
-      .then(res => {
-        console.log(res)
-        const userExist = res.find(user => user.email === email && user.password === password)
-        console.log(userExist);
-        if (userExist === undefined) {
-          console.log("Email atau Password Salah")
-        }
-      })
+    fetch('https://teal-colorful-lemur.cyclic.app/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({email, password}),
+    })
+
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+
+      if (data.success) {
+        console.log("Login Berhasil");
+      } else {
+        console.log("Email atau Password Salah");
+      }
+    })
+    .catch(error => {
+      console.error("Gagal melakukan login:", error);
+    });
   };
 
   return (
