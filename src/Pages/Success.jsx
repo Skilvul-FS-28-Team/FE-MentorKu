@@ -55,7 +55,9 @@ const PaymentSuccess = () => {
                 </p>
                 <div className="button-container">
                   <div>
+                    <a href="/transaksi">
                     <button className="btn btn-primary">Detail Transaksi</button>
+                    </a>
                   </div>
                   <div>
                     <a href="/">

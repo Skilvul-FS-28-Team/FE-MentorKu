@@ -413,6 +413,8 @@ h1 {
     border: 2px solid #E9E9E9;
     height: 30px;
     width: 75%;
+    color: var(--text-color-2);
+
 }
 
 #btn-card-promo svg {
@@ -427,14 +429,13 @@ h1 {
 #btn-card-promo p {
     padding-top: 0px;
     margin-top: 2px;
-    margin-left: 15px;
+    margin-left: 10px;
     margin-right: 55px;
+    color: var(--text-color-2);
 }
 
 #btn-card-promo:hover {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    color:white;
+    opacity: 60%;
 }
 
 .arrow-right {

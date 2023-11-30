@@ -13,7 +13,7 @@ const Registrasi = () => {
   const handleRegister = (event) => {
     event.preventDefault();
 
-    fetch('https://652ff6b96c756603295e01fb.mockapi.io/regist', {
+    fetch('https://teal-colorful-lemur.cyclic.app/auth/regist', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

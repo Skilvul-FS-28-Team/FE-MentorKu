@@ -1,12 +1,43 @@
-import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import '../style/index.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { FaStar } from "react-icons/fa6";
-import '../components/home'
+import { useEffect, useState } from "react"
 
 
 const Home = () => {
+   const [mentor1, setMentor1] = useState([]);
+
+   useEffect(() => {
+   getMentor();
+},[]);
+
+async function getMentor() {
+  const response = await fetch("https://teal-colorful-lemur.cyclic.app/mentor");
+  const data = await response.json();
+  setMentor1(data.data);
+}
+  
+  // const { id1 } = useParams();
+
+  // useEffect(() => {
+  //   if (id1) {
+  //     fetch('https://teal-colorful-lemur.cyclic.app/mentor')
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setMentor1(data);
+  //     })
+  //     .catch((error) =>
+  //     console.error("Error fetching data for mentor 1 from the API:", error)
+  //     );
+  //   }
+  //   // Add more
+    
+  // }, [id1]);
+
+
+
+
   return (
     <div>
       <header>
@@ -167,32 +198,37 @@ const Home = () => {
       <div className="container">
         <h2>Temukan Mentor Terbaikmu</h2>
         <div className="row row-cols-1 row-cols-xl-4 row-cols-md-3 ow-cols-sm-1 g-xl-4 g-md-2 g-sm-1">
-          <div className="col">
-            <a href="detail-mentor.html?id=1">
+          {mentor1.length == 0 ? <div>Loading...</div> :
+          mentor1.map ((item)=>
+          <div className="col" key={item.id}>
+            <a href="mentor?id=1">
               <div className="card card-mentor">
-                <img src="src/Assets/Img/mentor/mentor1.png" alt="" srcSet="" />
-                <h3>Nadine Anggela</h3>
+                <img src={item.profile_image} alt={item.profile_image} srcSet="" />
+                <h3>{item.name}</h3>
                 <div className="mentor-company d-inline-flex gap-2 align-items-center">
                   <i className="bi bi-suitcase-lg"></i>
-                  <div className="mentor-company-text">Data Analysis di Google</div>
+                  <div className="mentor-company-text">{item.position} di {item.company}</div>
                 </div>
                 <div className="mentor-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
                   <div className="mentor-experience">
-                    Experience <br /> <b>4 years</b>
+                    Experience <br /> <b>{item.yoe} Tahun</b>
                   </div>
                   <div className="mentor-status">available</div>
                 </div>
                 <div className="price-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
-                  <div className="price">Rp95.000</div>
+                  <div className="price">Rp{item.price}</div>
                   <div className="rating d-inline-flex gap-1">
                     <i className="bi bi-star-fill"><FaStar/></i>4.9<b>(576)</b>
                   </div>
                 </div>
               </div>
             </a>
-          </div>          
-          <div className="col">
-            <a href="detail-mentor.html?id=1">
+          </div>
+          )
+          }
+                    
+          {/* <div className="col">
+            <a href="mentor?id=2">
               <div className="card card-mentor">
                 <img src="src/Assets/Img/mentor/mentor2.png" alt="" srcSet="" />
                 <h3>Micho Suhada</h3>
@@ -216,7 +252,7 @@ const Home = () => {
             </a>
           </div>          
           <div className="col">
-            <a href="detail-mentor.html?id=1">
+            <a href="mentor?id=3">
               <div className="card card-mentor">
                 <img src="src/Assets/Img/mentor/mentor3.png" alt="" srcSet="" />
                 <h3>Lina Wiona</h3>
@@ -240,7 +276,7 @@ const Home = () => {
             </a>
           </div>          
           <div className="col">
-            <a href="detail-mentor.html?id=1">
+            <a href="mentor?id=4">
               <div className="card card-mentor">
                 <img src="src/Assets/Img/mentor/mentor4.png" alt="" srcSet="" />
                 <h3>Bambang Riven</h3>
@@ -264,7 +300,7 @@ const Home = () => {
             </a>
           </div>          
           <div className="col">
-            <a href="detail-mentor.html?id=1">
+            <a href="mentor?id=5">
               <div className="card card-mentor">
                 <img src="src/Assets/Img/mentor/mentor4.png" alt="" srcSet="" />
                 <h3>Nicola Sera</h3>
@@ -288,7 +324,7 @@ const Home = () => {
             </a>
           </div>          
           <div className="col">
-            <a href="detail-mentor.html?id=1">
+            <a href="mentor?id=6">
               <div className="card card-mentor">
                 <img src="src/Assets/Img/mentor/mentor3.png" alt="" srcSet="" />
                 <h3>Daniel Suharta</h3>
@@ -312,7 +348,7 @@ const Home = () => {
             </a>
           </div>          
           <div className="col">
-            <a href="detail-mentor.html?id=1">
+            <a href="mentor?id=7">
               <div className="card card-mentor">
                 <img src="src/Assets/Img/mentor/mentor2.png" alt="" srcSet="" />
                 <h3>Sasuke Sarutobi</h3>
@@ -336,7 +372,7 @@ const Home = () => {
             </a>
           </div>          
           <div className="col">
-            <a href="detail-mentor.html?id=1">
+            <a href="mentor?id=8">
               <div className="card card-mentor">
                 <img src="src/Assets/Img/mentor/mentor1.png" alt="" srcSet="" />
                 <h3>Melani Nia</h3>
@@ -358,7 +394,7 @@ const Home = () => {
                 </div>
               </div>
             </a>
-          </div>          
+          </div>           */}
         </div>
         <div className="d-flex justify-content-center py-5">
           <button className="button-mentor">Lihat Lainnya</button>

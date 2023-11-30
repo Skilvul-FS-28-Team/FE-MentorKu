@@ -11,7 +11,7 @@ const LoginComponent = () => {
     localStorage.setItem("Email", email);
     localStorage.setItem("Password", password);
 
-    fetch('https://652ff6b96c756603295e01fb.mockapi.io/regist')
+    fetch('https://teal-colorful-lemur.cyclic.app/auth/login')
       .then(res => res.json())
       .then(res => {
         console.log(res)

@@ -77,6 +77,7 @@ main {
 
 .breadcrumb-section {
     padding-top: 30px;
+    margin-top: -90px;
 }
 
 .breadcrumb-section h2 {
@@ -172,14 +173,14 @@ hr {
 .voucher-input {
     display: flex;
     justify-content: space-between;
-    padding-left: 24px;
-    padding-right: 24px;
+    text-align: center;
     border-radius: 8px;
     margin-bottom: 10px;
     padding-bottom: 5px;
     padding-top: 0px;
     /* height: 40px; */
     width: 60%;
+    /* height: 90px; */
     background-color: var(--primary-color);
     border-color: var(--primary-color);
 }
@@ -192,6 +193,7 @@ hr {
     font-weight: 500;
     font-size: 18px;
     color: white;
+    margin-bottom: 10px;
 }
 
 .name-voucer {

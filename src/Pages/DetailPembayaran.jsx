@@ -137,7 +137,7 @@ const Pembayaran = () => {
                       </div>
                     </div>
                     <div id="cta-payment" className="cta-payment">
-                      <a className="btn btn-primary" href="#">Lakukan Pembayaran</a>
+                      <a className="btn btn-primary" href="/barcode">Lakukan Pembayaran</a>
                     </div>
                   </div>
                 </div>

@@ -74,9 +74,11 @@ const PaymentBarcode = () => {
             </div>
             <div className="button-container">
               <div>
+                <a href="/success">
                 <button className="btn btn-primary" id="btn-payment-done">
                   Pembayaran Selesai ?
                 </button>
+                </a>
               </div>
             </div>
           </div>
