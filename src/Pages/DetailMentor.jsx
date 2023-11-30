@@ -1,41 +1,26 @@
-import React from "react";
 import "../style/detail-mentor.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { FaDribbble, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
+import { FaDribbble, FaInstagram, FaLinkedin, FaYoutube, FaStar } from "react-icons/fa";
 import { useEffect, useState } from "react"
 
 const Mentor = () => {
-  const [mentor, setMentor] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [mentor1, setMentor1] = useState([]);
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const idMentor = urlParams.get("id");
+   useEffect(() => {
+   getMentor();
+},[]);
 
-    fetch("https://652ff6b96c756603295e01fb.mockapi.io/datamentor")
-      .then((res) => res.json())
-      .then((data) => {
-        const selectedMentor = data.find(
-          (datamentor) => datamentor.id === idMentor
-        );
-        setMentor(selectedMentor);
-        setLoading(false);
-      })
-      .catch((error) =>
-        console.error("Error fetching data from the API:", error)
-      );
-  }, []);
-
-  const handleBooking = () => {
-    // Redirect to the booking page with mentor id
-    window.location.href = `mentor=${mentor.id}`;
-  };
-
-  if (loading) {
-    return <p>Loading...</p>;
+async function getMentor() {
+  try{
+    const response = await fetch("https://teal-colorful-lemur.cyclic.app/mentor");
+  const data = await response.json();
+  setMentor1(data.data);
+  } catch (error){
+    console.error("Gagal mendapatkan data mentor:", error)
   }
-
+}
+  
   return (
     <>
       {/* Header Section Start */}
@@ -100,26 +85,30 @@ const Mentor = () => {
 
       {/* Hero Section start */}
       <div className="background"></div>
-      <div className="container" id="hero">
+      {mentor1.length === 0 ? (
+        <div>Loading...</div>
+      ) : (
+        mentor1.map((item) => (
+          <div className="container" id="hero" key={item.id}>
         <div className="hero-section">
           <div className="hero-text">
             <img
-              src={mentor.img}
+              src={item.profile_image}
               alt="MentorKu"
             />
             {/* {mentor.img} */}
             <div className="hero-desc">
               <h2>
-                {mentor.name}<span>{mentor.field} di {mentor.company}</span>
+                {item.name}<span>{item.position} di {item.company}</span>
               </h2>
               <div className="hero-social-media">
-                <a href="#" className="fa">
+                <a href={item.linkedin} className="fa">
                   <FaLinkedin />
                 </a>
-                <a href="#" className="fa">
+                <a href={item.instagram} className="fa">
                   <FaInstagram />
                 </a>
-                <a href="#" className="fa">
+                <a href={item.personal_web} className="fa">
                   <FaDribbble />
                 </a>
                 <a href="#" className="fa">
@@ -132,28 +121,35 @@ const Mentor = () => {
         <div className="card" id='card-line'>
         </div>
       </div>
+        ))
+      )
+      }
+      
       {/* Hero Section end */}
 
       {/* Description Section Start */}
       <div className="container">
         <div className="row">
-          <div className="col-md-7 wider-column" id="description">
+          {mentor1.length === 0 ? (
+            <div>Loading...</div>
+          ) : (
+            mentor1.map((item) => (
+              <div className="col-md-7 wider-column" id="description" key={item.id}>
             <div className="card">
               <div className="card-body">
                 <h3 className="card-title" id="desc-card">
                   Deskripsi Mentor
                 </h3>
                 <p className="card-text" id="desc-text">
-                  {mentor.desc}
+                  {item.desc}
                 </p>
                 <h3 className="card-title" id="desc-card">
                   Pengalaman Kerja
                 </h3>
                 <p className="card-text" id="desc-text">
-                  <span>Product Designer Tokopedia ( 2020 - Sekarang )</span>
-                  <span>UI/UX Designer Niagahoster ( 2018 - 2019 )</span>{" "}
-                  <span>Freelance Graphic Designer ( 2017 )</span>{" "}
-                  <span>Logo Designer Nico Studio ( 2016 )</span>
+                  <span>{item.skill_1} ( 2020 - Sekarang )</span>
+                  <span>{item.skill_2} ( 2018 - 2019 )</span>
+                  <span>{item.skill_3} ( 2017 )</span>
                 </p>
               </div>
               <div className="container">
@@ -161,13 +157,13 @@ const Mentor = () => {
                   <div className="col-12">
                     <div className="button-professional">
                       <button type="button" className="btn-professional">
-                        UX Designer
+                        {item.skill_1}
                       </button>
                       <button type="button" className="btn-professional">
-                        Product Designer
+                      {item.skill_2}
                       </button>
                       <button type="button" className="btn-professional">
-                        UI/UX Design
+                      {item.skill_3}
                       </button>
                     </div>
                   </div>
@@ -175,18 +171,18 @@ const Mentor = () => {
               </div>
               <div className="container">
                 <div className="social-media-btn">
-                  <a href="#" className="fa">
-                    <FaLinkedin />
-                  </a>
-                  <a href="#" className="fa">
-                    <FaInstagram />
-                  </a>
-                  <a href="#" className="fa">
-                    <FaDribbble />
-                  </a>
-                  <a href="#" className="fa">
-                    <FaYoutube />
-                  </a>
+                <a href={item.linkedin} className="fa">
+                  <FaLinkedin />
+                </a>
+                <a href={item.instagram} className="fa">
+                  <FaInstagram />
+                </a>
+                <a href={item.personal_web} className="fa">
+                  <FaDribbble />
+                </a>
+                <a href="#" className="fa">
+                  <FaYoutube />
+                </a>
                 </div>
               </div>
               <div className="container">
@@ -202,7 +198,11 @@ const Mentor = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> 
+            ))
+          )
+          
+        }
           <div className="col-md-5">
             {/* Dua kolom kanan */}
             <div className="row">
@@ -294,10 +294,10 @@ const Mentor = () => {
                           className="bi bi-arrow-right"
                           viewBox="0 0 16 16"
                         >
-                          <path
+                          {/* <path
                             fill-rule="evenodd"
                             d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
-                          />
+                          /> */}
                         </svg>
                       </button>
                       <div className="range-mentoring">
@@ -719,255 +719,223 @@ const Mentor = () => {
       </div>
 
       <section className="recomendation-section">
-        <div className="container">
-          <h2>Temukan Mentor Terbaikmu</h2>
-          <div className="row row-cols-1 row-cols-xl-4 row-cols-md-3 ow-cols-sm-1 g-xl-4 g-md-2 g-sm-1">
-            <div className="col">
-              <a href="detail-mentor.html?id=1">
-                <div className="card card-mentor">
-                  <img
-                    src="src/Assets/Img/mentor/mentor1.png"
-                    alt=""
-                    srcSet=""
-                  />
-                  <h3>Nadine Anggela</h3>
-                  <div className="mentor-company d-inline-flex gap-2 align-items-center">
-                    <i className="bi bi-suitcase-lg"></i>
-                    <div className="mentor-company-text">
-                      Data Analysis di Google
-                    </div>
+          <div className="container">
+            <h2>Temukan Mentor Terbaikmu</h2>
+            <div className="row row-cols-1 row-cols-xl-4 row-cols-md-3 ow-cols-sm-1 g-xl-4 g-md-2 g-sm-1">
+              {mentor1.length == 0 ? (
+                <div>Loading...</div>
+              ) : (
+                mentor1.map((item) => (
+                  <div className="col" key={item.id}>
+                    <a href="mentor?id=1">
+                      <div className="card card-mentor">
+                        <img
+                          src={item.profile_image}
+                          alt={item.profile_image}
+                          srcSet=""
+                        />
+                        <h3>{item.name}</h3>
+                        <div className="mentor-company d-inline-flex gap-2 align-items-center">
+                          <i className="bi bi-suitcase-lg"></i>
+                          <div className="mentor-company-text">
+                            {item.position} di {item.company}
+                          </div>
+                        </div>
+                        <div className="mentor-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
+                          <div className="mentor-experience">
+                            Experience <br /> <b>{item.yoe} Tahun</b>
+                          </div>
+                          <div className="mentor-status">available</div>
+                        </div>
+                        <div className="price-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
+                          <div className="price">Rp{item.price}</div>
+                          <div className="rating d-inline-flex gap-1">
+                            <i className="bi bi-star-fill">
+                              <FaStar />
+                            </i>
+                            4.9<b>(576)</b>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
                   </div>
-                  <div className="mentor-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
-                    <div className="mentor-experience">
-                      Experience <br /> <b>4 years</b>
-                    </div>
-                    <div className="mentor-status">available</div>
+                ))
+              )}
+
+              {/* <div className="col">
+            <a href="mentor?id=2">
+              <div className="card card-mentor">
+                <img src="src/Assets/Img/mentor/mentor2.png" alt="" srcSet="" />
+                <h3>Micho Suhada</h3>
+                <div className="mentor-company d-inline-flex gap-2 align-items-center">
+                  <i className="bi bi-suitcase-lg"></i>
+                  <div className="mentor-company-text">Data Analysis di Shopee</div>
+                </div>
+                <div className="mentor-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
+                  <div className="mentor-experience">
+                    Experience <br /> <b>4 years</b>
                   </div>
-                  <div className="price-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
-                    <div className="price">Rp95.000</div>
-                    <div className="rating d-inline-flex gap-1">
-                      <i className="bi bi-star-fill"></i>4.9<b>(576)</b>
-                    </div>
+                  <div className="mentor-status">available</div>
+                </div>
+                <div className="price-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
+                  <div className="price">Rp95.000</div>
+                  <div className="rating d-inline-flex gap-1">
+                    <i className="bi bi-star-fill"><FaStar/></i>4.9<b>(576)</b>
                   </div>
                 </div>
-              </a>
+              </div>
+            </a>
+          </div>          
+          <div className="col">
+            <a href="mentor?id=3">
+              <div className="card card-mentor">
+                <img src="src/Assets/Img/mentor/mentor3.png" alt="" srcSet="" />
+                <h3>Lina Wiona</h3>
+                <div className="mentor-company d-inline-flex gap-2 align-items-center">
+                  <i className="bi bi-suitcase-lg"></i>
+                  <div className="mentor-company-text">Data Analysis di Google</div>
+                </div>
+                <div className="mentor-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
+                  <div className="mentor-experience">
+                    Experience <br /> <b>4 years</b>
+                  </div>
+                  <div className="mentor-status">available</div>
+                </div>
+                <div className="price-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
+                  <div className="price">Rp95.000</div>
+                  <div className="rating d-inline-flex gap-1">
+                    <i className="bi bi-star-fill"><FaStar/></i>4.9<b>(576)</b>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>          
+          <div className="col">
+            <a href="mentor?id=4">
+              <div className="card card-mentor">
+                <img src="src/Assets/Img/mentor/mentor4.png" alt="" srcSet="" />
+                <h3>Bambang Riven</h3>
+                <div className="mentor-company d-inline-flex gap-2 align-items-center">
+                  <i className="bi bi-suitcase-lg"></i>
+                  <div className="mentor-company-text">Data Analysis di Google</div>
+                </div>
+                <div className="mentor-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
+                  <div className="mentor-experience">
+                    Experience <br /> <b>4 years</b>
+                  </div>
+                  <div className="mentor-status">available</div>
+                </div>
+                <div className="price-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
+                  <div className="price">Rp95.000</div>
+                  <div className="rating d-inline-flex gap-1">
+                    <i className="bi bi-star-fill"><FaStar/></i>4.9<b>(576)</b>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>          
+          <div className="col">
+            <a href="mentor?id=5">
+              <div className="card card-mentor">
+                <img src="src/Assets/Img/mentor/mentor4.png" alt="" srcSet="" />
+                <h3>Nicola Sera</h3>
+                <div className="mentor-company d-inline-flex gap-2 align-items-center">
+                  <i className="bi bi-suitcase-lg"></i>
+                  <div className="mentor-company-text">Data Analysis di Google</div>
+                </div>
+                <div className="mentor-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
+                  <div className="mentor-experience">
+                    Experience <br /> <b>4 years</b>
+                  </div>
+                  <div className="mentor-status">available</div>
+                </div>
+                <div className="price-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
+                  <div className="price">Rp95.000</div>
+                  <div className="rating d-inline-flex gap-1">
+                    <i className="bi bi-star-fill"><FaStar/></i>4.9<b>(576)</b>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>          
+          <div className="col">
+            <a href="mentor?id=6">
+              <div className="card card-mentor">
+                <img src="src/Assets/Img/mentor/mentor3.png" alt="" srcSet="" />
+                <h3>Daniel Suharta</h3>
+                <div className="mentor-company d-inline-flex gap-2 align-items-center">
+                  <i className="bi bi-suitcase-lg"></i>
+                  <div className="mentor-company-text">Data Analysis di Google</div>
+                </div>
+                <div className="mentor-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
+                  <div className="mentor-experience">
+                    Experience <br /> <b>4 years</b>
+                  </div>
+                  <div className="mentor-status">available</div>
+                </div>
+                <div className="price-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
+                  <div className="price">Rp95.000</div>
+                  <div className="rating d-inline-flex gap-1">
+                    <i className="bi bi-star-fill"><FaStar/></i>4.9<b>(576)</b>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>          
+          <div className="col">
+            <a href="mentor?id=7">
+              <div className="card card-mentor">
+                <img src="src/Assets/Img/mentor/mentor2.png" alt="" srcSet="" />
+                <h3>Sasuke Sarutobi</h3>
+                <div className="mentor-company d-inline-flex gap-2 align-items-center">
+                  <i className="bi bi-suitcase-lg"></i>
+                  <div className="mentor-company-text">Data Analysis di Google</div>
+                </div>
+                <div className="mentor-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
+                  <div className="mentor-experience">
+                    Experience <br /> <b>4 years</b>
+                  </div>
+                  <div className="mentor-status">available</div>
+                </div>
+                <div className="price-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
+                  <div className="price">Rp95.000</div>
+                  <div className="rating d-inline-flex gap-1">
+                    <i className="bi bi-star-fill"><FaStar/></i>4.9<b>(576)</b>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>          
+          <div className="col">
+            <a href="mentor?id=8">
+              <div className="card card-mentor">
+                <img src="src/Assets/Img/mentor/mentor1.png" alt="" srcSet="" />
+                <h3>Melani Nia</h3>
+                <div className="mentor-company d-inline-flex gap-2 align-items-center">
+                  <i className="bi bi-suitcase-lg"></i>
+                  <div className="mentor-company-text">Data Analysis di Google</div>
+                </div>
+                <div className="mentor-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
+                  <div className="mentor-experience">
+                    Experience <br /> <b>4 years</b>
+                  </div>
+                  <div className="mentor-status">available</div>
+                </div>
+                <div className="price-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
+                  <div className="price">Rp95.000</div>
+                  <div className="rating d-inline-flex gap-1">
+                    <i className="bi bi-star-fill"><FaStar/></i>4.9<b>(576)</b>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>           */}
             </div>
-            <div className="col">
-              <a href="detail-mentor.html?id=1">
-                <div className="card card-mentor">
-                  <img
-                    src="src/Assets/Img/mentor/mentor2.png"
-                    alt=""
-                    srcSet=""
-                  />
-                  <h3>Micho Suhada</h3>
-                  <div className="mentor-company d-inline-flex gap-2 align-items-center">
-                    <i className="bi bi-suitcase-lg"></i>
-                    <div className="mentor-company-text">
-                      Data Analysis di Shopee
-                    </div>
-                  </div>
-                  <div className="mentor-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
-                    <div className="mentor-experience">
-                      Experience <br /> <b>4 years</b>
-                    </div>
-                    <div className="mentor-status">available</div>
-                  </div>
-                  <div className="price-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
-                    <div className="price">Rp95.000</div>
-                    <div className="rating d-inline-flex gap-1">
-                      <i className="bi bi-star-fill"></i>4.9<b>(576)</b>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div className="col">
-              <a href="detail-mentor.html?id=1">
-                <div className="card card-mentor">
-                  <img
-                    src="src/Assets/Img/mentor/mentor3.png"
-                    alt=""
-                    srcSet=""
-                  />
-                  <h3>Lina Wiona</h3>
-                  <div className="mentor-company d-inline-flex gap-2 align-items-center">
-                    <i className="bi bi-suitcase-lg"></i>
-                    <div className="mentor-company-text">
-                      Data Analysis di Google
-                    </div>
-                  </div>
-                  <div className="mentor-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
-                    <div className="mentor-experience">
-                      Experience <br /> <b>4 years</b>
-                    </div>
-                    <div className="mentor-status">available</div>
-                  </div>
-                  <div className="price-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
-                    <div className="price">Rp95.000</div>
-                    <div className="rating d-inline-flex gap-1">
-                      <i className="bi bi-star-fill"></i>4.9<b>(576)</b>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div className="col">
-              <a href="detail-mentor.html?id=1">
-                <div className="card card-mentor">
-                  <img
-                    src="src/Assets/Img/mentor/mentor4.png"
-                    alt=""
-                    srcSet=""
-                  />
-                  <h3>Bambang Riven</h3>
-                  <div className="mentor-company d-inline-flex gap-2 align-items-center">
-                    <i className="bi bi-suitcase-lg"></i>
-                    <div className="mentor-company-text">
-                      Data Analysis di Google
-                    </div>
-                  </div>
-                  <div className="mentor-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
-                    <div className="mentor-experience">
-                      Experience <br /> <b>4 years</b>
-                    </div>
-                    <div className="mentor-status">available</div>
-                  </div>
-                  <div className="price-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
-                    <div className="price">Rp95.000</div>
-                    <div className="rating d-inline-flex gap-1">
-                      <i className="bi bi-star-fill"></i>4.9<b>(576)</b>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div className="col">
-              <a href="detail-mentor.html?id=1">
-                <div className="card card-mentor">
-                  <img
-                    src="src/Assets/Img/mentor/mentor4.png"
-                    alt=""
-                    srcSet=""
-                  />
-                  <h3>Nicola Sera</h3>
-                  <div className="mentor-company d-inline-flex gap-2 align-items-center">
-                    <i className="bi bi-suitcase-lg"></i>
-                    <div className="mentor-company-text">
-                      Data Analysis di Google
-                    </div>
-                  </div>
-                  <div className="mentor-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
-                    <div className="mentor-experience">
-                      Experience <br /> <b>4 years</b>
-                    </div>
-                    <div className="mentor-status">available</div>
-                  </div>
-                  <div className="price-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
-                    <div className="price">Rp95.000</div>
-                    <div className="rating d-inline-flex gap-1">
-                      <i className="bi bi-star-fill"></i>4.9<b>(576)</b>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div className="col">
-              <a href="detail-mentor.html?id=1">
-                <div className="card card-mentor">
-                  <img
-                    src="src/Assets/Img/mentor/mentor3.png"
-                    alt=""
-                    srcSet=""
-                  />
-                  <h3>Daniel Suharta</h3>
-                  <div className="mentor-company d-inline-flex gap-2 align-items-center">
-                    <i className="bi bi-suitcase-lg"></i>
-                    <div className="mentor-company-text">
-                      Data Analysis di Google
-                    </div>
-                  </div>
-                  <div className="mentor-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
-                    <div className="mentor-experience">
-                      Experience <br /> <b>4 years</b>
-                    </div>
-                    <div className="mentor-status">available</div>
-                  </div>
-                  <div className="price-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
-                    <div className="price">Rp95.000</div>
-                    <div className="rating d-inline-flex gap-1">
-                      <i className="bi bi-star-fill"></i>4.9<b>(576)</b>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div className="col">
-              <a href="detail-mentor.html?id=1">
-                <div className="card card-mentor">
-                  <img
-                    src="src/Assets/Img/mentor/mentor2.png"
-                    alt=""
-                    srcSet=""
-                  />
-                  <h3>Sasuke Sarutobi</h3>
-                  <div className="mentor-company d-inline-flex gap-2 align-items-center">
-                    <i className="bi bi-suitcase-lg"></i>
-                    <div className="mentor-company-text">
-                      Data Analysis di Google
-                    </div>
-                  </div>
-                  <div className="mentor-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
-                    <div className="mentor-experience">
-                      Experience <br /> <b>4 years</b>
-                    </div>
-                    <div className="mentor-status">available</div>
-                  </div>
-                  <div className="price-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
-                    <div className="price">Rp95.000</div>
-                    <div className="rating d-inline-flex gap-1">
-                      <i className="bi bi-star-fill"></i>4.9<b>(576)</b>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div className="col">
-              <a href="detail-mentor.html?id=1">
-                <div className="card card-mentor">
-                  <img
-                    src="src/Assets/Img/mentor/mentor1.png"
-                    alt=""
-                    srcSet=""
-                  />
-                  <h3>Melani Nia</h3>
-                  <div className="mentor-company d-inline-flex gap-2 align-items-center">
-                    <i className="bi bi-suitcase-lg"></i>
-                    <div className="mentor-company-text">
-                      Data Analysis di Google
-                    </div>
-                  </div>
-                  <div className="mentor-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
-                    <div className="mentor-experience">
-                      Experience <br /> <b>4 years</b>
-                    </div>
-                    <div className="mentor-status">available</div>
-                  </div>
-                  <div className="price-info d-inline-flex gap-2 align-items-center justify-content-between flex-lg-row flex-md-column flex-sm-row">
-                    <div className="price">Rp95.000</div>
-                    <div className="rating d-inline-flex gap-1">
-                      <i className="bi bi-star-fill"></i>4.9<b>(576)</b>
-                    </div>
-                  </div>
-                </div>
-              </a>
+            <div className="d-flex justify-content-center py-5">
+              <button className="button-mentor">Lihat Lainnya</button>
             </div>
           </div>
-          <div className="d-flex justify-content-center py-5">
-            <button className="button-mentor">Lihat Lainnya</button>
-          </div>
-        </div>
-      </section>
+        </section>
 
       <footer className="text-black">
         <div className="container py-3">
