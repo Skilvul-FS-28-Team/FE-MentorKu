@@ -3,11 +3,13 @@ import "../style/index.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { FaStar } from "react-icons/fa6";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [mentor1, setMentor1] = useState([]);
   const [searchType, setSearchType] = useState('Mentor'); // Jenis pencarian awal
   const [searchInput, setSearchInput] = useState('');
+  const navigate = useNavigate()
 
   const handleSearchTypeChange = (type) => {
     setSearchType(type);
@@ -20,6 +22,7 @@ const Home = () => {
   const handleSearch = () => {
     // Lakukan sesuatu dengan nilai searchType dan searchInput
     console.log(`Search Type: ${searchType}, Search Input: ${searchInput}`);
+    navigate(`carimentor?keyword=${searchInput}`)
 
   };
 
@@ -35,24 +38,6 @@ const Home = () => {
     setMentor1(data.data);
   }
 
-  
-
-  // const { id1 } = useParams();
-
-  // useEffect(() => {
-  //   if (id1) {
-  //     fetch('https://teal-colorful-lemur.cyclic.app/mentor')
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setMentor1(data);
-  //     })
-  //     .catch((error) =>
-  //     console.error("Error fetching data for mentor 1 from the API:", error)
-  //     );
-  //   }
-  //   // Add more
-
-  // }, [id1]);
 
   return (
     <div>
@@ -133,25 +118,25 @@ const Home = () => {
                     lakukan konsultasi dan diskusi efektif dengan 1 on 1
                   </p>
                   <div className="search-bar">
-      <div id="select">
-        <p id="select-text">{searchType}</p>
-        <i className="bi bi-caret-down-fill"></i>
-        <ul id="list-search">
-          <li className="options" onClick={() => handleSearchTypeChange('Mentor')}>Mentor</li>
-          <li className="options" onClick={() => handleSearchTypeChange('Materi')}>Materi</li>
-        </ul>
-      </div>
-      <input
-        type="text"
-        id="search-input"
-        placeholder="Search all in categories"
-        value={searchInput}
-        onChange={handleInputChange}
-      />
-      <button id="search-btn" className="search-button" onClick={handleSearch}>
-        <i className="bi bi-search">Q</i>
-      </button>
-    </div>
+                    <div id="select">
+                      <p id="select-text">{searchType}</p>
+                      <i className="bi bi-caret-down-fill"></i>
+                      <ul id="list-search">
+                        <li className="options" onClick={() => handleSearchTypeChange('Mentor')}>Mentor</li>
+                        <li className="options" onClick={() => handleSearchTypeChange('Materi')}>Materi</li>
+                      </ul>
+                    </div>
+                    <input
+                      type="text"
+                      id="search-input"
+                      placeholder="Search all in categories"
+                      value={searchInput}
+                      onChange={handleInputChange}
+                    />
+                    <button id="search-btn" className="search-button" onClick={handleSearch}>
+                      <i className="bi bi-search">Q</i>
+                    </button>
+                  </div>
                   <div className="row">
                     <div className="statistic col-lg-2 col-md-2 col-sm-2 col-4">
                       <h3>20+</h3>
@@ -286,7 +271,7 @@ const Home = () => {
               ) : (
                 mentor1.map((item) => (
                   <div className="col" key={item.id}>
-                    <a href="/mentor?id=1">
+                    <a href={`/mentor?id=${item.id}`}>
                       <div className="card card-mentor">
                         <img
                           src={item.profile_image}
@@ -321,7 +306,7 @@ const Home = () => {
                 ))
               )}
 
-              
+
             </div>
             <div className="d-flex justify-content-center py-5">
               <button className="button-mentor">Lihat Lainnya</button>

@@ -3,26 +3,32 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { FaDribbble, FaInstagram, FaLinkedin, FaYoutube, FaStar } from "react-icons/fa";
 import { useEffect, useState } from "react"
+import { useSearchParams } from "react-router-dom";
 
 const Mentor = () => {
   const [mentor1, setMentor1] = useState([]);
+  const [searchParams] = useSearchParams('');
 
-   useEffect(() => {
-   getMentor();
-},[]);
+  // useEffect(() => {
+  //   getMentor();
+  // },[]);
 
-async function getMentor() {
-  try{
-    const response = await fetch("https://teal-colorful-lemur.cyclic.app/mentor");
-  const data = await response.json();
-  setMentor1(data.data);
-  } catch (error){
-    console.error("Gagal mendapatkan data mentor:", error)
+  useEffect(() => {
+    const id = searchParams.get("id");
+    getMentor(id)
+  }, [searchParams]);
+
+  async function getMentor(id) {
+    try{
+      const response = await fetch(`https://teal-colorful-lemur.cyclic.app/mentor/${id}`);
+    const data = await response.json();
+    setMentor1([data.data]);
+    } catch (error){
+      console.error("Gagal mendapatkan data mentor:", error)
+    }
   }
-}
 
-const selectedMentor = mentor1.length > 0 ? mentor1[0] : null;
-
+  const selectedMentor = mentor1.length > 0 ? mentor1[0] : null;
   
   return (
     <>
