@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../style/regist.css';
@@ -9,6 +9,8 @@ const Registrasi = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
+  const [registerMessage, setRegisterMessage] = useState('');
+
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -28,7 +30,8 @@ const Registrasi = () => {
       })
     })
       .then(res => res.json())
-      .then(res => alert("Register Berhasil"));
+      .then(res => {alert("Register Berhasil")
+    window.location.href = '/login'});
   };
 
   return (

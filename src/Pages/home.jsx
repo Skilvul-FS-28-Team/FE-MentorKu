@@ -4,6 +4,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { FaStar } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaSearch } from "react-icons/fa";
 
 const Home = () => {
   const [mentor1, setMentor1] = useState([]);
@@ -134,7 +135,7 @@ const Home = () => {
                       onChange={handleInputChange}
                     />
                     <button id="search-btn" className="search-button" onClick={handleSearch}>
-                      <i className="bi bi-search">Q</i>
+                      <i className="bi bi-search"><FaSearch/></i>
                     </button>
                   </div>
                   <div className="row">

@@ -103,10 +103,16 @@ const Transaksi = () => {
                             <p className="card-text">
                               Product Designer di Gojek
                             </p>
-                            <div className="" id="transaction-text">
-                              <p className="card-title">4 Years Experience</p>
-                              <p className="card-price">Rp95.000</p>
-                              <p className="card-status">Status Berlangsung</p>
+                            <div className="transaction-flex">
+                              <div className="" id="transaction-text">
+                                <p className="card-title">4 Years Experience</p>
+                                <p className="card-price">Rp95.000</p>
+                                <p className="card-status">Status Berlangsung</p>
+                              </div>
+                              <div className="time-mentoring">
+                                <h5 className="title-mentoring">Mentoring <span>10:00 - 12:00</span></h5>
+                                <a href="https://us02web.zoom.us/j/2250819839?pwd=Y1lFQXZTN2NndTRZcjRkcUZwNUMxUT">Link Zoom</a>
+                              </div>
                             </div>
                           </div>
                         </div>

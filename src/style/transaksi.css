@@ -134,7 +134,7 @@ span.secondary {
 }
 
 #card-transaction-section button:hover{
-    background-color: #e8ecff;
+    /* background-color: #e8ecff; */
 }
 
 #transaction-desc{
@@ -158,6 +158,10 @@ span.secondary {
     margin-left: 10px;
 }
 
+#transaction-text {
+    margin-left: 38%;
+}
+
 #transaction-text .card-title{
     font-size: 13px;
     font-weight: bold;
@@ -178,6 +182,40 @@ span.secondary {
 #transaction-text .card-status{
     color: var(--text-color-2);
     margin-left: -40px;
+}
+#transaction-desc .time-mentoring{
+    margin-left: 280%;
+}
+
+#transaction-desc .time-mentoring h5{
+    font-size: 22px;
+    color: var(--text-color-2);
+}
+
+#transaction-desc .time-mentoring span{
+    display: block;
+    font-size: 16px;
+}
+
+#transaction-desc .time-mentoring a{
+    color: var(--text-color-2);
+    border: 1px solid var(--text-color-2);
+    border-radius: 8px;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#transaction-desc .time-mentoring a:hover{
+    background-color: #e8ecff;
+}
+
+#transaction-desc .transaction-flex{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px;
 }
 
 

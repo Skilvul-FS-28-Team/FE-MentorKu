@@ -131,14 +131,7 @@ const selectedMentor = mentor1.length > 0 ? mentor1[0] : null;
                 <div className="mentoring-details">
                   <h5>Detail Pembayaran</h5>
                   <hr />
-                  <button className="voucher-input">
-                    <div className="name-voucer">
-                      <h6>Masukkan Voucher</h6>
-                    </div>
-                    <div>
-                      <h6></h6>
-                    </div>
-                  </button>
+                  {/*  */}
                   <div className="payment-cart">
                     <div className="normal-price">
                       <h6>1 on 1 Mentoring</h6>

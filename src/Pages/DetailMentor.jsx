@@ -272,33 +272,7 @@ const Mentor = () => {
                         Detail Pembayaran
                       </h3>
                       <div className="card"></div>
-                      <button type="button" id="btn-card-promo">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          className="bi bi-credit-card"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z" />
-                          <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z" />
-                        </svg>
-                        <p>Makin Hemat Pakai Promo</p>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          className="bi bi-arrow-right"
-                          viewBox="0 0 16 16"
-                        >
-                          {/* <path
-                            fill-rule="evenodd"
-                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
-                          /> */}
-                        </svg>
-                      </button>
+                      {/*  */}
                       <div className="range-mentoring">
                         <p>1 on 1 Mentoring</p>
                         <p>Rp90.000</p>

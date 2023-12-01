@@ -26,7 +26,7 @@ const LoginComponent = () => {
       if (data.success) {
         console.log("Login Berhasil");
       } else {
-        console.log("Email atau Password Salah");
+        window.location.href = '/';
       }
     })
     .catch(error => {
