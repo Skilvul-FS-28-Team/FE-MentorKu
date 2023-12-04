@@ -119,7 +119,7 @@ const CariMentor = () => {
               ) : (
                 mentor1.map((item) => (
                   <div className="col" key={item.id}>
-                    <a href="/mentor?id=1">
+                    <a href={`/mentor?id=${item.id}`}>
                       <div className="card card-mentor">
                         <img
                           src={item.profile_image}
