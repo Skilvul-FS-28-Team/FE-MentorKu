@@ -17,7 +17,7 @@ const Transaksi = () => {
       <header>
         <nav className="navbar navbar-expand-lg">
           <div className="container">
-            <a className="navbar-brand" href="#">
+            <a className="navbar-brand" href="/">
               <img src="src/Assets/Img/Only-Logo.png" alt="" className="me-1" />
               Mentor<span className="primary">Ku</span>
             </a>
