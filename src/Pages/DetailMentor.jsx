@@ -3,32 +3,95 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { FaDribbble, FaInstagram, FaLinkedin, FaYoutube, FaStar } from "react-icons/fa";
 import { useEffect, useState } from "react"
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Mentor = () => {
   const [mentor1, setMentor1] = useState([]);
+  const [selectedMentoringTime, setSelectedMentoringTime] = useState(null);
   const [searchParams] = useSearchParams('');
-
-  // useEffect(() => {
-  //   getMentor();
-  // },[]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const id = searchParams.get("id");
-    getMentor(id)
+    getMentor(id);
   }, [searchParams]);
 
   async function getMentor(id) {
-    try{
+    try {
       const response = await fetch(`https://teal-colorful-lemur.cyclic.app/mentor/${id}`);
-    const data = await response.json();
-    setMentor1([data.data]);
-    } catch (error){
-      console.error("Gagal mendapatkan data mentor:", error)
+      const data = await response.json();
+      setMentor1([data.data]);
+    } catch (error) {
+      console.error("Gagal mendapatkan data mentor:", error);
     }
   }
 
   const selectedMentor = mentor1.length > 0 ? mentor1[0] : null;
+
+  const btnSesi = selectedMentor && selectedMentor.Mentoring_time
+    ? selectedMentor.Mentoring_time.map((mentoringTime) => {
+      // Ubah format tanggal
+      const formattedDate = new Date(mentoringTime.avaliable_date_time);
+      const day = formattedDate.toLocaleDateString('id-ID', { weekday: 'long' });
+      const date = formattedDate.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+      const time = formattedDate.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', hour12: false });
+
+      return (
+        <button
+          key={mentoringTime.id}
+          type="button"
+          className="btn-sesi"
+          onClick={() => handleButtonClick(mentoringTime.avaliable_date_time)}
+        >
+          <div className="sesi-hari">{day}</div>
+          <div className="sesi-tgl">{date}</div>
+          <div className="sesi-tgl">{time}</div>
+        </button>
+      );
+    })
+    : null;
+
+  const handleButtonClick = (mentoringDateTime) => {
+    // Simpan waktu mentoring terpilih saat tombol di klik
+    setSelectedMentoringTime(mentoringDateTime);
+  };
+
+  const handleBooking = async () => {
+    console.log('Mencoba melakukan booking:', selectedMentoringTime + " dengan mentor id : " + selectedMentor.id);
+    
+    
+  
+    if (selectedMentor && selectedMentoringTime) {
+      try {
+        const response = await fetch('https://teal-colorful-lemur.cyclic.app/payment/booking', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            
+          },
+          body: JSON.stringify({
+            mentor_id: selectedMentor.id,
+            mentoring_date_time: selectedMentoringTime,
+          }),
+        });
+
+  
+        if (response.ok) {
+          console.log('Booking berhasil');
+        } else {
+          console.error('Gagal melakukan booking');
+        }
+
+        navigate(`/pembayaran?id=${selectedMentor.id}`)
+      } catch (error) {
+        console.error('Gagal melakukan booking:', error);
+      }
+    } else {
+      console.error('Pilih waktu mentoring terlebih dahulu');
+    }
+  };
+  
+
   
   return (
     <>
@@ -214,53 +277,11 @@ const Mentor = () => {
                     <div className="card" id="card-list-jadwal"></div>
                     <p className="card-sesi">Sesi Tersedia</p>
                     <div className="button-sesi">
-                      <button type="button" className="btn-sesi">
-                        <div className="sesi-hari">Senin</div>
-                        <div className="sesi-tgl">02 Okt</div>
-                        <div className="sesi-slot-no">01 Slot</div>
-                      </button>
-                      <button type="button" className="btn-sesi">
-                        <div className="sesi-hari">Selasa</div>
-                        <div className="sesi-tgl">03 Okt</div>
-                        <div className="sesi-slot-yes">10 Slot</div>
-                      </button>
-                      <button type="button" className="btn-sesi">
-                        <div className="sesi-hari">Rabu</div>
-                        <div className="sesi-tgl">04 Okt</div>
-                        <div className="sesi-slot-yes">15 Slot</div>
-                      </button>
-                      <button type="button" className="btn-sesi">
-                        <div className="sesi-hari">Kamis</div>
-                        <div className="sesi-tgl">05 Okt</div>
-                        <div className="sesi-slot-yes">20 Slot</div>
-                      </button>
-                      <button type="button" className="btn-sesi">
-                        <div className="sesi-hari">Jumat</div>
-                        <div className="sesi-tgl">06 Okt</div>
-                        <div className="sesi-slot-yes">05 Slot</div>
-                      </button>
+                    <div className="date-sesi">
+                    {btnSesi}
                     </div>
-                    <p className="card-sesi">Waktu Tersedia</p>
-                    <div className="button-time">
-                      <button type="button" className="btn-time" id="button">
-                        10:00
-                      </button>
-                      <button type="button" className="btn-time" id="button">
-                        13:00
-                      </button>
-                      <button type="button" className="btn-time" id="button">
-                        15:00
-                      </button>
-                      <button type="button" className="btn-time" id="button">
-                        19:00
-                      </button>
-                      <button type="button" className="btn-time" id="button">
-                        20:00
-                      </button>
-                      <button type="button" className="btn-time" id="button">
-                        21:00
-                      </button>
                     </div>
+                    
                   </div>
                 </div>
               </div>
@@ -271,31 +292,46 @@ const Mentor = () => {
                       <h3 className="card-title" id="card-detail">
                         Detail Pembayaran
                       </h3>
-                      <div className="card"></div>
+                      
                       {/*  */}
                       <div className="range-mentoring">
                         <p>1 on 1 Mentoring</p>
-                        <p>Rp90.000</p>
+                        {selectedMentor && (
+                            <>
+                              {new Intl.NumberFormat('id-ID', {
+                                style: 'currency',
+                                currency: 'IDR'
+                              }).format(selectedMentor.price)}
+                            </>
+                          )}
                       </div>
-                      <div className="range-diskon">
+                      {/* <div className="range-diskon">
                         <p>Diskon Spesial</p>
                         <p>- Rp10.000</p>
-                      </div>
+                      </div> */}
                       <div className="card"></div>
                       <div className="range-total">
                         <p>Total Biaya</p>
-                        <p className="range-total-harga">Rp80.000</p>
+                        <p className="range-total-harga">
+                          {selectedMentor && (
+                            <>
+                              {new Intl.NumberFormat('id-ID', {
+                                style: 'currency',
+                                currency: 'IDR'
+                              }).format(selectedMentor.price)}
+                            </>
+                          )}
+                        </p>
                       </div>
                       <div className="button-book">
-                        <a href="/pembayaran">
-                          <button
+                        <button
                             id="btn-booking-mentor"
                             type="button"
                             className="btn-book"
+                            onClick={handleBooking}
                           >
                             Booking Mentor
                           </button>
-                        </a>
                       </div>
                     </div>
                   </div>

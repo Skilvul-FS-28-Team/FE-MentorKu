@@ -2,25 +2,31 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/DetailPembayaran.css';
 import { FaStar } from 'react-icons/fa6';
 import { useEffect, useState } from "react"
+import { useParams, useSearchParams } from 'react-router-dom';
 
 const Pembayaran = () => {
+  
   const [mentor1, setMentor1] = useState([]);
+  const [searchParams] = useSearchParams()
 
-   useEffect(() => {
-   getMentor();
-},[]);
+  useEffect(() => {
+    const id = searchParams.get("id");
+    getMentor(id);
+  }, [searchParams]);
 
-async function getMentor() {
-  try{
-    const response = await fetch("https://teal-colorful-lemur.cyclic.app/mentor");
-  const data = await response.json();
-  setMentor1(data.data);
-  } catch (error){
-    console.error("Gagal mendapatkan data mentor:", error)
+  async function getMentor(id) {
+    try {
+      const response = await fetch(`https://teal-colorful-lemur.cyclic.app/mentor/${id}`);
+      const data = await response.json();
+      setMentor1([data.data]);
+    } catch (error) {
+      console.error("Gagal mendapatkan data mentor:", error);
+    }
   }
-}
 
-const selectedMentor = mentor1.length > 0 ? mentor1[0] : null;
+  const selectedMentor = mentor1.length > 0 ? mentor1[0] : null;
+
+
   return (
     <>
       <header>
@@ -82,7 +88,7 @@ const selectedMentor = mentor1.length > 0 ? mentor1[0] : null;
         <section className="breadcrumb-section">
           <div className="container">
             <div className="breadcrumb d-inline-flex gap-2 align-items-center">
-              <i className="bi bi-arrow-left-short"><a href="/mentor">🔙</a></i>
+              <i className="bi bi-arrow-left-short"><a href="/mentor">  </a></i>
               <h2>Konfirmasikan dan Bayar</h2>
             </div>
           </div>
@@ -117,7 +123,7 @@ const selectedMentor = mentor1.length > 0 ? mentor1[0] : null;
                     </div>
                     <div className="col-md-7">
                       <div className="card-body">
-                        <h5 className="card-title">Mentoring 1 on 1 Oleh <br /></h5>
+                        <h5 className="card-title">Mentoring 1 on 1 Oleh <br /> </h5>
                         <hr />
                         <div className="card-booking-rating d-inline-flex gap-2 align-items-center">
                           <i className="bi bi-star-fill"><FaStar/></i>4.9<b>(576)</b>

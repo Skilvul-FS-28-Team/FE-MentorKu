@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import '../style/login.css';
+import { useNavigate } from 'react-router-dom';
 
 const LoginComponent = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate()
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -23,16 +25,20 @@ const LoginComponent = () => {
     .then(data => {
       console.log(data);
 
-      if (data.success) {
+      if (data.message == "Login berhasil") {
         console.log("Login Berhasil");
+        localStorage.setItem('token', data.token);
+        navigate('/')
       } else {
-        window.location.href = '/';
+        alert("data yang dimasukkan salah")
       }
     })
     .catch(error => {
       console.error("Gagal melakukan login:", error);
     });
   };
+
+  
 
   return (
     <div className="regist-page">
