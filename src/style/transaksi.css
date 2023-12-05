@@ -219,6 +219,16 @@ span.secondary {
 }
 
 
+.active-mentoring {
+    border: solid 2px rgb(17, 62, 168);
+    border-radius: 5px;
+}
+
+.active-mentoring:hover {
+    background-color: rgb(240, 240, 255);
+}
+
+
 
 
 /* footer */

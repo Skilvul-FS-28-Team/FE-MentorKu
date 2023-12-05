@@ -1,8 +1,17 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../style/transaksi.css";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Transaksi = () => {
+
+  const navigate = useNavigate()
+
+  const handleMentoring = () => {
+    window.location.href = 'https://us05web.zoom.us/j/88962964514?pwd=lPynFRdw9BdGQroilsaxpRkFp4bSMM.1';
+  }
+
+
   return (
     <>
       <header>
@@ -50,15 +59,14 @@ const Transaksi = () => {
                   </a>
                 </li>
               </ul>
-
-              <div>
-                <button className="btn btn-flat">Login</button>
-                <button className="btn btn-secondary">Register</button>
-              </div>
             </div>
           </div>
         </nav>
       </header>
+
+      <br />
+      <br />
+      <br />
 
       <div className="container">
         <div className="row">
@@ -66,7 +74,7 @@ const Transaksi = () => {
             <div className="profile-sec">
               <img src="src/assets/img/mentor/Lina Wiona.png" alt="" />
               <h2>Lina Wiona</h2>
-              <button className="button-link">https://linawiona.com</button>
+              
             </div>
             <div className="side-bar">
               <a href="/dashboard">
@@ -91,35 +99,27 @@ const Transaksi = () => {
             <div className="container mt-5">
               <div className="row">
                 <h5>Transaksi</h5>
-
-                <button className="container mt-4">
-                  <div className="row">
-                    <div className="col-md-12">
-                      <div className="">
-                        <div className="card-body" id="transaction-desc">
-                          <img src="src/Assets/Img/mentor/mentor2.png" alt="" />
-                          <div className="" id="transaction-title">
-                            <h5 className="card-title">Micho Suhada</h5>
-                            <p className="card-text">
+                <div className="col-md-12 d-flex justify-content-between active-mentoring p-3 align-items-center">
+                    <div className="d-flex align-items-center">
+                      <img src="src/Assets/Img/mentor/mentor4.png"/>
+                      <div className="p-3">
+                          <h5 className="card-title">Micho Suhada</h5>
+                          <p className="card-text">
                               Product Designer di Gojek
-                            </p>
-                            <div className="transaction-flex">
-                              <div className="" id="transaction-text">
-                                <p className="card-title">4 Years Experience</p>
-                                <p className="card-price">Rp95.000</p>
-                                <p className="card-status">Status Berlangsung</p>
-                              </div>
-                              <div className="time-mentoring">
-                                <h5 className="title-mentoring">Mentoring <span>10:00 - 12:00</span></h5>
-                                <a href="https://us02web.zoom.us/j/2250819839?pwd=Y1lFQXZTN2NndTRZcjRkcUZwNUMxUT">Link Zoom</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                          </p>
                       </div>
                     </div>
-                  </div>
-                </button>
+                    <div className="d-flex flex-column">
+                      <div className="box-time align-items-center">
+                      <h5 className="title-mentoring p-3">
+                        <p style={{fontSize: '20px', color : 'red'}}>Akan berlangsung</p>
+                        Mentoring <span>10:00 - 12:00</span></h5>
+                      </div>
+                      <br />
+                      <button style={{backgroundColor: '#FF764A',fontSize: '16px',color: "white", border: "none"}} onClick={handleMentoring}>Join Mentoring</button>
+                    </div>
+                </div>
+                
               </div>
             </div>
           </div>

@@ -123,7 +123,7 @@ const Pembayaran = () => {
                     </div>
                     <div className="col-md-7">
                       <div className="card-body">
-                        <h5 className="card-title">Mentoring 1 on 1 Oleh <br /> </h5>
+                        <h5 className="card-title">Mentoring 1 on 1 <br /></h5>
                         <hr />
                         <div className="card-booking-rating d-inline-flex gap-2 align-items-center">
                           <i className="bi bi-star-fill"><FaStar/></i>4.9<b>(576)</b>
