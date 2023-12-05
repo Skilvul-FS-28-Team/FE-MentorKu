@@ -63,11 +63,12 @@ const Mentor = () => {
   
     if (selectedMentor && selectedMentoringTime) {
       try {
+        const authToken = localStorage.getItem('token');
         const response = await fetch('https://teal-colorful-lemur.cyclic.app/payment/booking', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            
+            'Authorization': `Bearer ${authToken}`, 
           },
           body: JSON.stringify({
             mentor_id: selectedMentor.id,
